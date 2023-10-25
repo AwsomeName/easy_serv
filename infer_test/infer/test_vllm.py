@@ -30,7 +30,7 @@ for op in outputs:
     output = op.outputs[0].text
     speed = len(output) / (gen_done - load_done)
     st += speed
-    print("gen_speed: ", len(output) / (gen_done - load_done))
+    print("gen_speed: ", len(output) / (gen_done - load_done), len(output))
 
 print("----------\n")
 print("tokens: ", output, len(output))

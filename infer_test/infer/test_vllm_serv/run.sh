@@ -1,0 +1,1 @@
+python -m vllm.entrypoints.api_server --model /home/lc/models/codellama/CodeLlama-7b-Instruct-hf --tensor-parallel-size 2 --dtype=half
