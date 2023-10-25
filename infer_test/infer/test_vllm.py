@@ -5,8 +5,9 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, GenerationConfig
 import time
 
 
-prompts = ["Hello, my name is", "The capital of France is"]  # Sample prompts.
-prompts = ["The capital of France is"]  # Sample prompts.
+# prompts = ["Hello, my name is", "The capital of France is"]  # Sample prompts.
+# prompts = ["The capital of France is"]  # Sample prompts.
+prompts = ["Hello, my name is", "The capital of France is", "do you know what time now?"]  # Sample prompts.
 
 load_start = time.time()
 # llm = LLM (model="lmsys/vicuna-7b-v1.3")  # Create an LLM.
@@ -23,8 +24,18 @@ output = outputs[0].outputs[0].text
 
 print("load_time: ", load_done - load_start)
 print("gen_time: ", gen_done - load_done)
-print("gen_speed: ", len(output) / (gen_done - load_done))
+st = 0.0
+print("----------\n")
+for op in outputs:
+    output = op.outputs[0].text
+    speed = len(output) / (gen_done - load_done)
+    st += speed
+    print("gen_speed: ", len(output) / (gen_done - load_done))
+
+print("----------\n")
 print("tokens: ", output, len(output))
+print("speed total: ", st)
+
 
 # 推理速度
 # test_data = load_dataset("json", data_files="/home/lc/data/THUDM/humaneval-x/data/python/data//humaneval.jsonl")
